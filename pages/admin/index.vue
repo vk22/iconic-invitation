@@ -160,7 +160,7 @@ async function handleAddBooking(data: { company: string; guests: any[] }) {
       </div>
     </section>
 
-    <div class="mt-4 flex flex-wrap items-end gap-3">
+    <!-- <div class="mt-4 flex flex-wrap items-end gap-3">
       <div>
         <label class="block text-sm font-medium text-gray-700">Day</label>
         <select v-model="dateFilter" class="mt-1 rounded-md border border-gray-300 px-3 py-2">
@@ -183,7 +183,7 @@ async function handleAddBooking(data: { company: string; guests: any[] }) {
       >
         Export CSV
       </a>
-    </div>
+    </div> -->
 
     <div class="mt-4 overflow-x-auto">
       <table class="w-full min-w-[820px] border-collapse text-sm">

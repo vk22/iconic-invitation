@@ -19,10 +19,10 @@ async function onSubmit() {
 
 <template>
   <main class="mx-auto max-w-sm px-4 py-16">
-    <h1 class="text-2xl font-semibold">Вход в админку</h1>
+    <h1 class="text-2xl font-semibold">Login</h1>
     <form class="mt-6 space-y-4" @submit.prevent="onSubmit">
       <div>
-        <label for="password" class="block text-sm font-medium text-gray-700">Пароль</label>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
         <input
           id="password"
           v-model="password"
