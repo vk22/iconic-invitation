@@ -123,7 +123,7 @@ async function handleSubmit(data: { company: string; consent: boolean; guests: G
   <main class="relative min-h-screen">
     <div class="fixed inset-0 -z-10">
       <img src="/img/main-img.jpg" alt="" class="h-full w-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-black/80" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/85 to-black/90" />
     </div>
 
     <div class="relative flex min-h-screen flex-col items-center px-4 py-10 text-center text-white sm:py-14">
