@@ -129,7 +129,7 @@ async function handleSubmit(data: { company: string; consent: boolean; guests: G
     <div class="relative flex min-h-screen flex-col items-center px-4 py-10 text-center text-white sm:py-14">
       <img src="/img/iconic-logo.svg" alt="ICONIC Residences, design by Pininfarina" class="w-32 sm:w-40" />
 
-      <h1 class="mt-10 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">
+      <h1 class="mt-10 max-w-2xl font-sans text-3xl leading-tight sm:text-5xl">
         You're Invited to<br />
         ICONIC Residences'<br />
         <span class="italic">First in Place Reveal</span>
