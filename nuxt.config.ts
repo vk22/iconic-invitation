@@ -13,6 +13,8 @@ export default defineNuxtConfig({
     databaseUrl: '',
     adminPassword: '',
     sessionSecret: '',
+    resendApiKey: '',
+    resendFromEmail: 'ICONIC Residences <info@mered.ae>',
     public: {
       eventTimezone: 'Asia/Dubai'
     }

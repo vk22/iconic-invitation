@@ -1,9 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+	font-family: 'TTForsExtraLight';
+	src: url('~/assets/fonts/TTForsExtraLight.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TTForsExtraLightItalic';
+	src: url('~/assets/fonts/TTForsExtraLightItalic.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TTForsLight';
+	src: url('~/assets/fonts/TTForsLight.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TTForsMedium';
+	src: url('~/assets/fonts/TTForsMedium.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ChiswickSans-Light';
+	src: url('~/assets/fonts/ChiswickSans-Light-Web.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ChiswickSans-LightItalic';
+	src: url('~/assets/fonts/ChiswickSans-LightItalic-Web.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'TTForsExtraLight', sans-serif;
+  letter-spacing: 0.25px;
+}
+
+p {
+  font-family: 'TTForsExtraLight', sans-serif;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.title-serif {
+  font-family: 'ChiswickSans-Light', serif;
+}
+
+.title-serif-italic {
+  font-family: 'ChiswickSans-LightItalic', serif;
+}
+
+.title-sans {
+  font-family: 'TTForsExtraLight', sans-serif;
+}
+
+.title-sans-italic {
+  font-family: 'TTForsExtraLightItalic', sans-serif;
+}
+
+.font-semibold {
+  font-family: 'TTForsMedium', sans-serif;
 }

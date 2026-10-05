@@ -109,6 +109,16 @@ async function cancelBooking() {
         <p class="text-gray-600">Lobby of Al Salam Tower, Dubai Internet City</p>
         <p class="mt-2 text-sm text-gray-500">{{ booking.company }} · {{ booking.guestCount }} guest(s)</p>
 
+        <div v-if="booking.status === 'confirmed'" class="mt-3">
+          <AddToCalendarMenu
+            :event-date="booking.eventDate"
+            :start-time="booking.startTime"
+            :end-time="booking.endTime"
+            :ics-url="`/api/bookings/${token}/calendar.ics`"
+            variant="light"
+          />
+        </div>
+
         <ul class="mt-4 space-y-2 text-sm">
           <li v-for="(g, i) in booking.guests" :key="i" class="border-t border-gray-100 pt-2 first:border-0 first:pt-0">
             <div class="font-medium text-gray-900">{{ g.firstName }} {{ g.lastName }}</div>

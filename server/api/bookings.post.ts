@@ -3,6 +3,7 @@ import { bookingInputSchema } from '../../shared/schemas/booking'
 import { useDb } from '../db/client'
 import { bookings, eventSlots, registrations } from '../db/schema'
 import { extractConflictingPhone, isUniqueViolation, SlotCapacityError } from '../utils/db-errors'
+import { bookingConfirmationEmail, sendEmail } from '../utils/email'
 
 const RATE_LIMIT = 5
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
@@ -46,6 +47,29 @@ export default defineEventHandler(async (event) => {
         .returning()
 
       return { booking, guests: insertedGuests, slot: updatedSlots[0] }
+    })
+
+    const origin = getRequestURL(event).origin
+    const manageUrl = `${origin}/booking/${result.booking.manageToken}`
+    const icsUrl = `${origin}/api/bookings/${result.booking.manageToken}/calendar.ics`
+    const outcomes = await Promise.allSettled(
+      result.guests.map((g) => {
+        const { subject, html } = bookingConfirmationEmail({
+          guestFirstName: g.firstName,
+          company,
+          eventDate: result.slot.eventDate,
+          startTime: result.slot.startTime,
+          endTime: result.slot.endTime,
+          manageUrl,
+          icsUrl
+        })
+        return sendEmail({ to: g.email, subject, html })
+      })
+    )
+    outcomes.forEach((outcome, i) => {
+      if (outcome.status === 'rejected') {
+        console.error('[bookings] confirmation email failed', { email: result.guests[i].email, reason: outcome.reason })
+      }
     })
 
     return {
