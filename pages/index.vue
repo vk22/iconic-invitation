@@ -15,6 +15,24 @@ function dayLabel(dateStr: string) {
 
 const { slots, refreshSlots } = useEventSlots();
 
+// Staged entrance on first load: background is visible immediately (no gate needed),
+// then top logo / rest of the content / bottom logo fade+slide in one after another.
+const showTopLogo = ref(false);
+const showContent = ref(false);
+const showBottomLogo = ref(false);
+
+onMounted(() => {
+  setTimeout(() => {
+    showTopLogo.value = true;
+  }, 300);
+  setTimeout(() => {
+    showContent.value = true;
+  }, 400);
+  setTimeout(() => {
+    showBottomLogo.value = true;
+  }, 500);
+});
+
 const modalOpen = ref(false);
 const selectedDate = ref(EVENT_DATES[0]);
 const selectedSlotId = ref<string | null>(null);
@@ -145,19 +163,24 @@ async function handleSubmit(data: {
     <div class="fixed inset-0 -z-10">
       <img src="/img/main-img.jpg" alt="" class="h-full w-full object-cover" />
       <div
-        class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/85 to-black/90"
+        class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/75 to-black/75"
       />
     </div>
 
     <div
       class="relative flex min-h-screen flex-col items-center px-4 py-10 text-center text-white sm:py-14"
     >
-      <img
-        src="/img/iconic-logo.svg"
-        alt="ICONIC Residences, design by Pininfarina"
-        class="w-[150px] sm:w-[220px]"
-      />
+      <Transition name="entrance">
+        <img
+          v-if="showTopLogo"
+          src="/img/iconic-logo.svg"
+          alt="ICONIC Residences, design by Pininfarina"
+          class="w-[150px] sm:w-[220px]"
+        />
+      </Transition>
 
+      <Transition name="entrance">
+      <div v-if="showContent" class="flex w-full flex-col items-center">
       <h1 class="mt-10 sm:mt-20 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">
         <span class="title-serif-italic">You're Invited to</span><br />
         <span class="title-serif uppercase tracking-wide"
@@ -195,17 +218,49 @@ async function handleSubmit(data: {
           class="flex w-full space-x-0 rounded-sm text-left text-sm sm:text-base"
         >
           <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
-            <dt class="font-semibold">Dates</dt>
+            <dt class="flex items-center gap-2 font-semibold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1" class="h-5 w-5 shrink-0">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+                />
+              </svg>
+              Dates
+            </dt>
             <dd class="text-center">13, 14 and 15 October</dd>
           </div>
           <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
-            <dt class="font-semibold mr-1">Time</dt>
+            <dt class="flex items-center gap-2 font-semibold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1" class="h-5 w-5 shrink-0">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              Time
+            </dt>
             <dd class="text-center">
               Tours will take place between<br>10:00 AM and 7:00 PM
             </dd>
           </div>
           <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
-            <dt class="font-semibold mr-1">Meeting point</dt>
+            <dt class="flex items-center gap-2 font-semibold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1" class="h-5 w-5 shrink-0">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                />
+              </svg>
+              Meeting point
+            </dt>
             <dd class="flex text-center">
               
               <AddressLink>Lobby of Al Salam Tower,<br>Dubai Internet City</AddressLink>
@@ -221,12 +276,17 @@ async function handleSubmit(data: {
       >
         Choose the time slot
       </button>
+      </div>
+      </Transition>
 
-      <img
-        src="/img/mered-logo.svg"
-        alt="MERED"
-        class="mt-10 w-[150px] sm:absolute sm:bottom-6 sm:right-6 sm:mt-0"
-      />
+      <Transition name="entrance">
+        <img
+          v-if="showBottomLogo"
+          src="/img/mered-logo.svg"
+          alt="MERED"
+          class="mt-10 w-[150px] sm:absolute sm:bottom-6 sm:right-6 sm:mt-0"
+        />
+      </Transition>
     </div>
 
     <Teleport to="body">
@@ -428,5 +488,15 @@ async function handleSubmit(data: {
 }
 .step-leave-to {
   opacity: 0;
+}
+
+.entrance-enter-active {
+  transition:
+    opacity 2s ease-out,
+    transform 0.3s ease-out;
+}
+.entrance-enter-from {
+  opacity: 0;
+  transform: translateY(0.25rem);
 }
 </style>
