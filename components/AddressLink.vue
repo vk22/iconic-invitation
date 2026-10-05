@@ -18,7 +18,7 @@ const mapEmbedSrc = computed(() => `https://www.google.com/maps?q=${LAT},${LNG}&
 <template>
   <button
     type="button"
-    class="underline underline-offset-2 decoration-dotted transition hover:opacity-70 !text-left"
+    class="underline underline-offset-2 decoration-dotted transition hover:opacity-70"
     @click="open = true"
   >
     <slot />

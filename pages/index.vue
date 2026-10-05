@@ -192,21 +192,21 @@ async function handleSubmit(data: {
 
       <div class="w-full max-w-4xl flex justify-center mt-8 sm:mt-14 ">
         <dl
-          class="flex gap-10 w-full space-y-2 rounded-sm text-left text-sm sm:text-base"
+          class="flex w-full space-x-0 rounded-sm text-left text-sm sm:text-base"
         >
-          <div class="flex flex-col gap-2 basis-1/3">
-            <dt class="font-semibold">Dates:</dt>
-            <dd class="">13, 14 and 15 October</dd>
+          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
+            <dt class="font-semibold">Dates</dt>
+            <dd class="text-center">13, 14 and 15 October</dd>
           </div>
-          <div class="flex flex-col gap-2 basis-1/3">
-            <dt class="font-semibold mr-1">Time:</dt>
-            <dd class="">
+          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
+            <dt class="font-semibold mr-1">Time</dt>
+            <dd class="text-center">
               Tours will take place between<br>10:00 AM and 7:00 PM
             </dd>
           </div>
-          <div class="flex flex-col gap-2 basis-1/3">
-            <dt class="font-semibold mr-1">Meeting point:</dt>
-            <dd class="flex justify-start text-left">
+          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
+            <dt class="font-semibold mr-1">Meeting point</dt>
+            <dd class="flex text-center">
               
               <AddressLink>Lobby of Al Salam Tower,<br>Dubai Internet City</AddressLink>
             </dd>
