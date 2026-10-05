@@ -168,7 +168,7 @@ async function handleSubmit(data: {
     </div>
 
     <div
-      class="relative flex min-h-screen flex-col items-center px-4 py-10 text-center text-white sm:py-14"
+      class="relative flex min-h-screen flex-col items-center px-4 pt-10 pb-28 text-center text-white sm:py-14"
     >
       <Transition name="entrance">
         <img
@@ -181,12 +181,12 @@ async function handleSubmit(data: {
 
       <Transition name="entrance">
       <div v-if="showContent" class="flex w-full flex-col items-center">
-      <h1 class="mt-10 sm:mt-20 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl">
-        <span class="title-serif-italic">You're Invited to</span><br />
-        <span class="title-serif uppercase tracking-wide"
+      <h1 class="mt-10 sm:mt-20 max-w-2xl font-serif text-3xl leading-tight sm:text-5xl xl:text-6xl">
+        <span class="main-title-sans uppercase">You're Invited to</span><br />
+        <span class="main-title-sans uppercase tracking-wide"
           >ICONIC Residences'</span
         ><br />
-        <span class="title-serif-italic">First in Place Reveal</span>
+        <span class="main-title-sans-bold uppercase">First in Place Reveal</span>
       </h1>
 
       <div
@@ -217,7 +217,7 @@ async function handleSubmit(data: {
         <dl
           class="flex w-full space-x-0 rounded-sm text-left text-sm sm:text-base"
         >
-          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
+          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-2 sm:p-8">
             <dt class="flex items-center gap-2 font-semibold">
               <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1" class="h-5 w-5 shrink-0">
                 <path
@@ -230,7 +230,7 @@ async function handleSubmit(data: {
             </dt>
             <dd class="text-center">13, 14 and 15 October</dd>
           </div>
-          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
+          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-2 sm:p-8">
             <dt class="flex items-center gap-2 font-semibold">
               <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1" class="h-5 w-5 shrink-0">
                 <path
@@ -245,7 +245,7 @@ async function handleSubmit(data: {
               Tours will take place between<br>10:00 AM and 7:00 PM
             </dd>
           </div>
-          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-8">
+          <div class="flex flex-col items-center gap-4 basis-1/3 border border-white/10 border-dashed p-2 sm:p-8">
             <dt class="flex items-center gap-2 font-semibold">
               <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1" class="h-5 w-5 shrink-0">
                 <path
@@ -271,7 +271,7 @@ async function handleSubmit(data: {
 
       <button
         type="button"
-        class="w-[545px] mt-10 sm:mt-20 min-h-[52px] rounded-sm bg-white px-10 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-gray-900 transition hover:bg-white/90 sm:text-base"
+        class="fixed inset-x-4 bottom-4 z-40 min-h-[52px] rounded-sm bg-white px-10 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-gray-900 shadow-lg transition hover:bg-white/90 sm:static sm:inset-auto sm:z-auto sm:mt-20 sm:w-[545px] sm:shadow-none sm:text-base"
         @click="openModal"
       >
         Choose the time slot
@@ -293,13 +293,13 @@ async function handleSubmit(data: {
       <Transition name="modal">
         <div
           v-if="modalOpen"
-          class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          class="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-black/70 p-0"
           @click.self="closeModal"
         >
           <div
-            class="modal-panel max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-sm border border-white/15 bg-[#141414] p-4 text-white sm:p-6"
+            class="modal-panel max-h-[100vh] sm:max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-sm border border-white/15 bg-[#141414] p-2 text-white sm:p-6"
           >
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between p-2 sm:p-0">
             <button
               v-if="step === 'form'"
               type="button"
@@ -318,7 +318,7 @@ async function handleSubmit(data: {
             </button>
           </div>
 
-          <div class="px-8 py-6">
+          <div class="px-2 sm:px-8 py-3 sm:py-6 ">
             <Transition name="step" mode="out-in">
             <div :key="step">
             <div class="mt-2 text-center">

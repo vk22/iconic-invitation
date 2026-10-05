@@ -45,6 +45,20 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'ABCHelveesti-Bold';
+	src: url('~/assets/fonts/ABCHelveesti-Bold.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ABCHelveesti-Regular';
+	src: url('~/assets/fonts/ABCHelveesti-Regular.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
 body {
   font-family: 'TTForsExtraLight', sans-serif;
   letter-spacing: 0.25px;
@@ -55,6 +69,14 @@ p {
   line-height: 1.5;
   font-size: 1rem;
   font-weight: 300;
+}
+
+.main-title-sans {
+  font-family: 'TTForsExtraLight', sans-serif;
+}
+
+.main-title-sans-bold {
+  font-family: 'TTForsMedium', sans-serif;
 }
 
 .title-serif {
