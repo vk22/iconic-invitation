@@ -106,7 +106,7 @@ async function cancelBooking() {
         <p class="font-medium text-gray-900">
           {{ dayLabel(booking.eventDate) }}, {{ booking.startTime.slice(0, 5) }}–{{ booking.endTime.slice(0, 5) }}
         </p>
-        <p class="text-gray-600">Lobby of Al Salam Tower, Dubai Internet City</p>
+        <p class="text-gray-600">Lobby of <AddressLink>Al Salam Tower, Dubai Internet City</AddressLink></p>
         <p class="mt-2 text-sm text-gray-500">{{ booking.company }} · {{ booking.guestCount }} guest(s)</p>
 
         <div v-if="booking.status === 'confirmed'" class="mt-3">

@@ -206,7 +206,10 @@ async function handleSubmit(data: {
           </div>
           <div class="flex flex-col gap-2 basis-1/3">
             <dt class="font-semibold mr-1">Meeting point:</dt>
-            <dd class="">Lobby of Al Salam Tower,<br>Dubai Internet City</dd>
+            <dd class="flex justify-start text-left">
+              
+              <AddressLink>Lobby of Al Salam Tower,<br>Dubai Internet City</AddressLink>
+            </dd>
           </div>
         </dl>
       </div>
@@ -222,19 +225,20 @@ async function handleSubmit(data: {
       <img
         src="/img/mered-logo.svg"
         alt="MERED"
-        class="mt-10 w-20 sm:absolute sm:bottom-6 sm:right-6 sm:mt-0"
+        class="mt-10 w-[150px] sm:absolute sm:bottom-6 sm:right-6 sm:mt-0"
       />
     </div>
 
     <Teleport to="body">
-      <div
-        v-if="modalOpen"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-        @click.self="closeModal"
-      >
+      <Transition name="modal">
         <div
-          class="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-sm border border-white/15 bg-[#141414] p-4 text-white sm:p-6"
+          v-if="modalOpen"
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          @click.self="closeModal"
         >
+          <div
+            class="modal-panel max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-sm border border-white/15 bg-[#141414] p-4 text-white sm:p-6"
+          >
           <div class="flex items-center justify-between">
             <button
               v-if="step === 'form'"
@@ -255,6 +259,8 @@ async function handleSubmit(data: {
           </div>
 
           <div class="px-8 py-6">
+            <Transition name="step" mode="out-in">
+            <div :key="step">
             <div class="mt-2 text-center">
               <template v-if="step === 'grid'">
                 <h2 class="title-sans text-3xl sm:text-4xl">
@@ -337,7 +343,7 @@ async function handleSubmit(data: {
                 }}
               </p>
               <p class="mt-1 text-white/80">
-                Lobby of Al Salam Tower, Dubai Internet City
+                Lobby of <AddressLink>Al Salam Tower, Dubai Internet City</AddressLink>
               </p>
               <p class="mx-auto mt-4 max-w-sm text-white/60">
                 We look forward to welcoming you and sharing this exciting
@@ -370,9 +376,57 @@ async function handleSubmit(data: {
                 Done
               </button>
             </section>
+            </div>
+            </Transition>
+          </div>
           </div>
         </div>
-      </div>
+      </Transition>
     </Teleport>
   </main>
 </template>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease-out;
+}
+.modal-leave-active {
+  transition-duration: 0.2s;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active .modal-panel,
+.modal-leave-active .modal-panel {
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+.modal-leave-active .modal-panel {
+  transition-duration: 0.2s;
+}
+.modal-enter-from .modal-panel,
+.modal-leave-to .modal-panel {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+
+.step-enter-active {
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+.step-leave-active {
+  transition: opacity 0.15s ease-in;
+}
+.step-enter-from {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+.step-leave-to {
+  opacity: 0;
+}
+</style>

@@ -224,12 +224,13 @@ async function handleAddBooking(data: { company: string; guests: any[] }) {
     </div>
 
     <Teleport to="body">
-      <div
-        v-if="addModalOpen"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
-        @click.self="closeAddModal"
-      >
-        <div class="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-5 text-gray-900 sm:p-6">
+      <Transition name="modal">
+        <div
+          v-if="addModalOpen"
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          @click.self="closeAddModal"
+        >
+          <div class="modal-panel max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-5 text-gray-900 sm:p-6">
           <div class="flex items-center justify-between">
             <h2 class="text-lg font-semibold">Add booking</h2>
             <button type="button" class="text-gray-400 hover:text-gray-700" @click="closeAddModal">✕</button>
@@ -272,8 +273,38 @@ async function handleAddBooking(data: { company: string; guests: any[] }) {
               @back="closeAddModal"
             />
           </div>
+          </div>
         </div>
-      </div>
+      </Transition>
     </Teleport>
   </main>
 </template>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease-out;
+}
+.modal-leave-active {
+  transition-duration: 0.2s;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active .modal-panel,
+.modal-leave-active .modal-panel {
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+.modal-leave-active .modal-panel {
+  transition-duration: 0.2s;
+}
+.modal-enter-from .modal-panel,
+.modal-leave-to .modal-panel {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+</style>
